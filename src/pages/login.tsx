@@ -64,7 +64,7 @@ export default function loginPage() {
             </Typography>
 
             <Grid container spacing={4}>
-              {dummyData.map((eatery: Eatery) => (
+              {eateries.map((eatery: Eatery) => (
                 <Grid item xs={6}>
                   <EateryCard
                     key={eatery.imgName}
