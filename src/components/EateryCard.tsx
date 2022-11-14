@@ -28,7 +28,7 @@ export default function EateryCard({ name, imageName }: Props) {
           <CardMedia
             component="img"
             height="96"
-            image={`/static/images/${imageName}.png`}
+            image={`../../${imageName}.png`}
             alt={name}
           />
           <CardContent>

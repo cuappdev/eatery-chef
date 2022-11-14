@@ -11,6 +11,8 @@ import { StaticImage } from 'gatsby-plugin-image'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 
+import headerStyles from '../styles/header.module.scss'
+
 // const darkTheme = createTheme({
 //   palette: {
 //     type: 'dark',
