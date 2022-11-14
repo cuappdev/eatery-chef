@@ -1,34 +1,19 @@
 import React from 'react'
 import { Eatery } from '../models/Eatery'
-import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import EateryCard from '../components/EateryCard'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
-import { StaticImage } from 'gatsby-plugin-image'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 
+import DummyData from '../data/DummyData'
 import headerStyles from '../styles/header.module.scss'
 
-// const darkTheme = createTheme({
-//   palette: {
-//     type: 'dark',
-//   },
-// })
+const eateries = DummyData.eateries
 
-const dummyData: Eatery[] = [
-  new Eatery('104west', '... West Ave', 'Kosher Dining Hall'),
-  new Eatery('anabel', '... West Ave', 'Kosher Dining Hall'),
-  new Eatery('cafe-jennie', '... West Ave', 'Kosher Dining Hall'),
-  new Eatery('cornell-dairy-bar', '... West Ave', 'Kosher Dining Hall'),
-  new Eatery('gimme-coffee', '... West Ave', 'Kosher Dining Hall'),
-  new Eatery('mattins-cafe', '... West Ave', 'Kosher Dining Hall'),
-  new Eatery('okenshields', '... West Ave', 'Kosher Dining Hall'),
-  new Eatery('risley', '... West Ave', 'Kosher Dining Hall'),
-]
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: 'auto',
