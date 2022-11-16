@@ -4,36 +4,95 @@ import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import EateryCard from '../components/EateryCard'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import Box from '@material-ui/core/Box'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
+import styled from '@emotion/styled'
+
+import IconPie from '../assets/logo-pie.svg'
+import IconText from '../assets/logo-text.svg'
+import AppDev from '../assets/appdev.svg'
 
 import DummyData from '../data/DummyData'
-import headerStyles from '../styles/header.module.scss'
 
 const eateries = DummyData.eateries
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: 'auto',
+    maxHeight: '100vh',
     width: 1152,
+    margin: 'auto',
+    overflow: 'hidden',
   },
   leftContainer: {
-    width: 552,
-  },
-  h1: {
-    fontFamily: 'SF Pro Display',
-    fontStyle: 'bold',
-    fontSize: 50,
-  },
-  icon: {
-    marginTop: '30vh',
+    marginTop: '29.4vh',
+    marginLeft: '48px',
+    width: '552px',
   },
   rightContainer: {
-    width: 500,
+    marginTop: '16.8vh',
+    marginLeft: '48px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '24px',
+    width: '500px',
+    overflow: 'hidden',
   },
 }))
+
+const TitleContainer = styled.div`
+  width: 500px;
+  & > h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 57.28px;
+  }
+  & > h3 {
+    margin: 0;
+    padding-top: 12px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.64px;
+    color: #586069;
+  }
+`
+
+const SearchBar = styled.input`
+  height: 44px;
+  width: 100%;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.2px;
+  color: #24292e;
+  background-color: #eff1f4;
+  & > focus {
+    outline: none;
+  }
+`
+
+const Description = styled.p`
+  margin: 0;
+  font-size: 24px;
+  weight: 500;
+  line-height: 28.64px;
+`
+
+const Footer = styled.footer`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  padding: 0;
+  color: #586069;
+
+  position: fixed;
+  bottom: 0;
+`
 
 export default function loginPage() {
   const styles = useStyles()
@@ -43,26 +102,23 @@ export default function loginPage() {
       <Box className={styles.root}>
         <Grid container spacing={2}>
           <Grid item className={styles.leftContainer}>
-            <CardMedia
-              component="img"
-              image="/static/images/eatery-chef-logo.png"
-              className={styles.icon}
-            />
-            <Typography gutterBottom variant="h6" component="div">
+            <IconPie />
+            <IconText />
+            <Description>
               Manage your eatery, update your menu items, and help more people
               love your food.
-            </Typography>
-            <CardMedia component="img" image="/static/images/footer.png" />
+            </Description>
+            <Footer>
+              Designed and developed by
+              <AppDev />. See our privacy policy.
+            </Footer>
           </Grid>
           <Grid item className={styles.rightContainer}>
-            <Paper>
-              <h1>Right Container</h1>
-            </Paper>
-            <Typography className={styles.h1}>Find your Eatery</Typography>
-            <Typography variant="h5">
-              or get started by adding a new eatery
-            </Typography>
-
+            <TitleContainer>
+              <h1>Find your Eatery</h1>
+              <h3>or get started by adding a new eatery</h3>
+            </TitleContainer>
+            <SearchBar placeholder="Search all eateries" />
             <Grid container spacing={4}>
               {eateries.map((eatery: Eatery) => (
                 <Grid item xs={6}>
