@@ -2,7 +2,7 @@ import React from 'react'
 import { Eatery } from '../models/Eatery'
 import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import EateryCard from '../components/EateryCard'
+import { EateryCard, CardSizeW } from '../components/EateryCard'
 import { Grid, Box } from '@material-ui/core'
 import styled from '@emotion/styled'
 
@@ -123,6 +123,7 @@ export default function loginPage() {
                     key={eatery.imgName}
                     name={''}
                     imageName={eatery.imgName}
+                    cardSizeW={CardSizeW.M}
                   />
                 </Grid>
               ))}

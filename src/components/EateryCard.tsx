@@ -3,10 +3,15 @@ import { Card, CardActionArea, CardMedia, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import styled from '@emotion/styled'
 
+type Props = {
+  readonly name: string
+  readonly imageName: string | null
+  readonly cardSizeW: CardSizeW
+}
+
 const useStyles = makeStyles((theme) => ({
   card: {
     maxHeight: 158,
-    maxWidth: 238,
     borderRadius: 8,
     backgroundColor: '#FAFAFA',
   },
@@ -38,37 +43,52 @@ const TextWrapper = styled.div`
   }
 `
 
-const prettifyName = (name: string) => {
+const EateryCardWrapper = styled.div<{ readonly cardSizeW: CardSizeW }>`
+  max-width: ${(props) => props.cardSizeW + 'px'};
+`
+
+const prettifyName = (name: string | null) => {
+  if (name === null) {
+    return 'Eatery Name'
+  }
   return name
     .split('-')
     .map((word) => word[0].toUpperCase() + word.slice(1))
     .join(' ')
 }
 
-type Props = { readonly name: string; readonly imageName: string }
+export enum CardSizeW {
+  S = 122,
+  M = 238,
+  L = 295,
+  XL = 343,
+}
 
 // TODO: Replace image with Gatsby dynamic image instead of loading directly from static
-export default function EateryCard({ name, imageName }: Props) {
-  const styles = useStyles()
+export function EateryCard({ name, imageName, cardSizeW }: Props) {
   return (
-    <Paper elevation={4} className={styles.card}>
-      <Card>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="96"
-            image={`../../${imageName}.png`}
-            alt={name}
-          />
-          <TextWrapper>
-            <h3>{prettifyName(imageName)}</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-              diam sapien, dapibus quis orci sit amet, bibendum luctus eros.
-            </p>
-          </TextWrapper>
-        </CardActionArea>
-      </Card>
-    </Paper>
+    <EateryCardWrapper cardSizeW={cardSizeW}>
+      <Paper elevation={4}>
+        <Card>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="96"
+              image={
+                imageName ? `../../${imageName}.png` : '../../placeholder.png'
+              }
+              alt={name}
+            />
+            <TextWrapper>
+              <h3>{prettifyName(imageName)}</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                diam sapien, dapibus quis orci sit amet, bibendum luctus eros.
+              </p>
+            </TextWrapper>
+          </CardActionArea>
+        </Card>
+      </Paper>
+    </EateryCardWrapper>
   )
 }
